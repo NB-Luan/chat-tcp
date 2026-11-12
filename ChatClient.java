@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class ChatClient extends JFrame {
 
     private final String serverAddress;
@@ -143,7 +142,8 @@ public class ChatClient extends JFrame {
 
     private void sendMessage() {
         String msg = inputField.getText().trim();
-        if (msg.isEmpty()) return;
+        if (msg.isEmpty())
+            return;
         try {
             out.writeUTF("MSG");
             out.writeUTF(msg);
@@ -158,7 +158,8 @@ public class ChatClient extends JFrame {
     private void chooseAndSendFile() {
         JFileChooser chooser = new JFileChooser();
         int result = chooser.showOpenDialog(this);
-        if (result != JFileChooser.APPROVE_OPTION) return;
+        if (result != JFileChooser.APPROVE_OPTION)
+            return;
 
         File file = chooser.getSelectedFile();
         try {
@@ -213,13 +214,12 @@ public class ChatClient extends JFrame {
 
     private void appendChat(String user, String message) {
         String time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-        SwingUtilities.invokeLater(() ->
-                chatArea.append("[" + time + "] " + user + ": " + message + "\n"));
+        SwingUtilities.invokeLater(() -> chatArea.append("[" + time + "] " + user + ": " + message + "\n"));
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JTextField addressField = new JTextField("127.0.0.1");
+            JTextField addressField = new JTextField("100.74.159.88");
             JTextField portField = new JTextField("12345");
             JTextField nameField = new JTextField("User" + (int) (Math.random() * 1000));
 
